@@ -569,8 +569,8 @@
 
     <div class="container">
         <div class="header">
-            <h1>🦌 ANALOG Vol.1</h1>
-            <h2>이 영상 하나면 충분합니다</h2>
+            <h1>🦌 유튜부 랜덤 플레이 타임</h1>
+            <h2>콘서트 전까지 충분합니다</h2>
             <div>
                 <span class="live-badge">🔴 LIVE</span>
             </div>
@@ -631,14 +631,12 @@
             { id: 'H8ZnFKkc7ps', title: 'That Day', initialViews: 39676 },
             { id: 'q78AVE07wdI', title: 'I will let go', initialViews: 279481 },
             { id: '0JeQF_nrSmU', title: '내 곁에 있어주 (Stay by My Side) Official MV', initialViews: 87081 },
-            { id: '33xZoSnV5t0', title: 'Stay by My Side(내 곁에 있어주) | 1theK', initialViews: 31758 },
             { id: 'ZJo6KHpI-2k', title: '한계령 (Hankyeryeong Pass) Official MV', initialViews:65623 },
-            { id: 'C7Y9D4hV3QU', title: 'Hankyeryeong Pass(한계령) | 1theK', initialViews: 13160 },
             { id: 'iQ4CCJgJKXM', title: '홀로된 사랑 | 트롯챔피언 | EP.72', initialViews: 47374},
             { id: '-zYhlQn6yVI', title: '내 이름 아시죠 | 사랑의콜센타', initialViews: 8833996},
             { id: 'ZOPl8hBKd5c', title: ' 하이뮨의 NEW CF 촬영 현장', initialViews: 10202 },
             { id: 'jXJKJc5fZnE', title: '홀로된 사랑 (Lonely Love) Official MV', initialViews: 0},
-            { id: '6lq_G6l4xRs', title: 'Lonely Love(홀로된 사랑) | 1theK', initialViews: 0 }
+           
         ];
 
         let db;
@@ -655,15 +653,15 @@
             let min, max;
 
             if (hour >= 6 && hour < 12) {
-                // 아침 (06:00-11:59): 95~125초
+                // 아침 (06:00-11:59): 45~55초
                 min = 95;
                 max = 125;
             } else if (hour >= 12 && hour < 18) {
-                // 점심 (12:00-17:59): 75~105초
+                // 점심 (12:00-17:59): 47~57초
                 min = 75;
                 max = 105;
             } else {
-                // 저녁 (18:00-05:59): 90~115초
+                // 저녁 (18:00-05:59): 45~55초
                 min = 90;
                 max = 115;
             }
@@ -846,3 +844,4 @@
     </script>
 </body>
 </html>
+
