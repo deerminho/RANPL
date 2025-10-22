@@ -654,16 +654,16 @@
 
             if (hour >= 6 && hour < 12) {
                 // 아침 (06:00-11:59): 45~55초
-                min = 95;
-                max = 125;
+                min = 45;
+                max = 55;
             } else if (hour >= 12 && hour < 18) {
                 // 점심 (12:00-17:59): 47~57초
-                min = 75;
-                max = 105;
+                min = 47;
+                max = 57;
             } else {
                 // 저녁 (18:00-05:59): 45~55초
-                min = 90;
-                max = 115;
+                min = 45;
+                max = 55;
             }
 
             const range = max - min + 1;
@@ -844,5 +844,6 @@
     </script>
 </body>
 </html>
+
 
 
