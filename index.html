@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>장민호 ANALOG Vol.1 총공 </title>
+    <title>이 영상 하나면 충분합니다</title>
     <style>
         * {
             margin: 0;
@@ -12,14 +12,15 @@
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", Arial, sans-serif;
-            background: linear-gradient(135deg, #0d7377 0%, #14FFEC 50%, #00CEC9 100%);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Pretendard", "Noto Sans KR", Arial, sans-serif;
+            background: linear-gradient(135deg, #E8F8F7 0%, #B8F5E9 50%, #A8E6CE 100%);
             min-height: 100vh;
-            padding: 10px;
+            padding: 15px;
             position: relative;
             overflow-x: hidden;
         }
         
+        /* 배경 패턴 효과 */
         body::before {
             content: '';
             position: fixed;
@@ -27,16 +28,17 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 206, 201, 0.2) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(20, 255, 236, 0.2) 0%, transparent 50%);
-            animation: pulse 4s ease-in-out infinite;
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(0, 206, 201, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(168, 230, 206, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(184, 245, 233, 0.05) 0%, transparent 50%);
             pointer-events: none;
+            animation: float-pattern 20s ease-in-out infinite;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
+        @keyframes float-pattern {
+            0%, 100% { opacity: 0.6; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-20px); }
         }
         
         .floating-hearts {
@@ -52,20 +54,21 @@
         
         .heart {
             position: absolute;
-            font-size: 20px;
+            font-size: 24px;
             opacity: 0;
-            animation: float-up 6s ease-in infinite;
+            animation: float-up 8s ease-in infinite;
+            filter: drop-shadow(0 2px 4px rgba(0, 206, 201, 0.2));
         }
         
         @keyframes float-up {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                transform: translateY(100vh) rotate(0deg) scale(0.8);
                 opacity: 0;
             }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
+            10% { opacity: 0.9; }
+            90% { opacity: 0.9; }
             100% {
-                transform: translateY(-100px) rotate(360deg);
+                transform: translateY(-100px) rotate(360deg) scale(1.2);
                 opacity: 0;
             }
         }
@@ -78,112 +81,126 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #00CEC9 0%, #14FFEC 100%);
-            border-radius: 20px 20px 0 0;
-            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 254, 253, 0.95) 100%);
+            border-radius: 30px 30px 0 0;
+            padding: 40px 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0, 206, 201, 0.4);
+            box-shadow: 
+                0 10px 40px rgba(0, 206, 201, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
         }
         
+        /* 헤더 장식 요소 */
         .header::before {
-            content: '⚡';
+            content: '✨';
             position: absolute;
-            font-size: 200px;
-            opacity: 0.1;
-            top: -50px;
-            right: -30px;
-            animation: rotate 10s linear infinite;
+            font-size: 120px;
+            opacity: 0.08;
+            top: -20px;
+            left: 30px;
+            animation: twinkle 3s ease-in-out infinite;
         }
         
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
-        .admin-lock {
+        .header::after {
+            content: '🎵';
             position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.3);
-            border: 2px solid rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 10;
-            font-size: 20px;
+            font-size: 100px;
+            opacity: 0.08;
+            bottom: -10px;
+            right: 30px;
+            animation: bounce-soft 4s ease-in-out infinite;
         }
         
-        .admin-lock:hover {
-            background: rgba(255, 255, 255, 0.5);
-            transform: scale(1.1);
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.08; transform: scale(1); }
+            50% { opacity: 0.15; transform: scale(1.1); }
+        }
+        
+        @keyframes bounce-soft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
         
         .header h1 {
             font-size: 48px;
-            color: white;
+            background: linear-gradient(135deg, #00CEC9 0%, #00E0D4 50%, #00CEC9 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-weight: 900;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             position: relative;
             z-index: 1;
+            letter-spacing: -1px;
+            text-shadow: 0 2px 20px rgba(0, 206, 201, 0.2);
         }
         
         .header h2 {
-            font-size: 32px;
-            color: #fff;
-            font-weight: 700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            margin-bottom: 15px;
+            font-size: 28px;
+            color: #2d3436;
+            font-weight: 600;
+            margin-bottom: 20px;
             position: relative;
             z-index: 1;
+            letter-spacing: -0.5px;
         }
         
         .live-badge {
             display: inline-block;
-            background: #00CEC9;
+            background: linear-gradient(135deg, #00CEC9 0%, #00E0D4 100%);
             color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
+            padding: 10px 24px;
+            border-radius: 25px;
             font-size: 14px;
             font-weight: 700;
-            animation: blink 1.5s ease-in-out infinite;
-            box-shadow: 0 4px 15px rgba(0, 206, 201, 0.5);
+            animation: pulse-badge 2s ease-in-out infinite;
+            box-shadow: 
+                0 4px 15px rgba(0, 206, 201, 0.3),
+                0 2px 8px rgba(0, 206, 201, 0.2);
+            letter-spacing: 0.5px;
         }
         
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+        @keyframes pulse-badge {
+            0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 206, 201, 0.3); }
+            50% { transform: scale(1.05); box-shadow: 0 6px 20px rgba(0, 206, 201, 0.4); }
         }
         
         .mission-banner {
-            background: linear-gradient(90deg, #00CEC9 0%, #14FFEC 50%, #0dcaf0 100%);
-            padding: 20px;
+            background: linear-gradient(135deg, #00CEC9 0%, #00E0D4 50%, #A8E6CE 100%);
+            padding: 25px;
             text-align: center;
             color: white;
             font-size: 20px;
             font-weight: 800;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-            animation: gradient-shift 3s ease infinite;
-            background-size: 200% 200%;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 20px rgba(0, 206, 201, 0.2);
+            position: relative;
+            overflow: hidden;
         }
         
-        @keyframes gradient-shift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+        .mission-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            animation: shine 3s ease-in-out infinite;
         }
-
-
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
         
         .video-container {
-            background: #000;
+            background: white;
             position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         
         .video-wrapper {
@@ -191,6 +208,7 @@
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
+            background: #000;
         }
         
         .video-wrapper iframe {
@@ -203,447 +221,384 @@
         }
         
         .video-info {
-            background: linear-gradient(135deg, #2d3436 0%, #1e272e 100%);
-            padding: 25px;
-            color: white;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+            padding: 30px;
+            color: #2d3436;
         }
         
         .now-playing {
-            font-size: 14px;
+            font-size: 13px;
             color: #00CEC9;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         
         .video-title {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 800;
-            margin-bottom: 15px;
-            color: white;
+            margin-bottom: 20px;
+            color: #2d3436;
+            line-height: 1.3;
         }
         
         .timer-box {
-            background: rgba(0, 206, 201, 0.2);
-            padding: 10px 20px;
-            border-radius: 15px;
-            border: 2px solid #00CEC9;
+            background: linear-gradient(135deg, rgba(0, 206, 201, 0.08) 0%, rgba(168, 230, 206, 0.08) 100%);
+            padding: 15px 25px;
+            border-radius: 20px;
+            border: 2px solid rgba(0, 206, 201, 0.2);
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #2d3436;
+            font-weight: 600;
         }
         
         .timer-number {
             color: #00CEC9;
             font-weight: 800;
-            font-size: 20px;
+            font-size: 24px;
+            margin-left: 8px;
         }
         
         .next-btn {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(135deg, #00CEC9 0%, #14FFEC 100%);
+            background: linear-gradient(135deg, #00CEC9 0%, #00E0D4 100%);
             color: white;
             border: none;
-            border-radius: 15px;
-            font-size: 18px;
+            border-radius: 20px;
+            font-size: 17px;
             font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s;
-            box-shadow: 0 6px 20px rgba(0, 206, 201, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 
+                0 6px 20px rgba(0, 206, 201, 0.3),
+                0 2px 8px rgba(0, 206, 201, 0.2);
+            letter-spacing: 0.5px;
         }
         
         .next-btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(0, 206, 201, 0.6);
+            box-shadow: 
+                0 10px 30px rgba(0, 206, 201, 0.4),
+                0 4px 12px rgba(0, 206, 201, 0.3);
+        }
+        
+        .next-btn:active {
+            transform: translateY(-1px);
         }
         
         .stats-section {
-            background: white;
-            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 254, 253, 0.95) 100%);
+            padding: 40px 30px;
+            border-radius: 0 0 30px 30px;
+            backdrop-filter: blur(10px);
+            box-shadow: 
+                0 -5px 20px rgba(0, 206, 201, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
         }
         
-        .table-container {
-            overflow-x: auto;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 206, 201, 0.2);
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-        }
-        
-        thead {
-            background: linear-gradient(135deg, #00CEC9 0%, #14FFEC 100%);
-            color: white;
-        }
-        
-        th {
-            padding: 18px 15px;
-            font-weight: 700;
-            font-size: 14px;
-            text-align: left;
-        }
-        
-        th:nth-child(2), th:nth-child(3), th:nth-child(4) {
-            text-align: center;
-        }
-        
-        tbody tr {
-            border-bottom: 2px solid #f1f3f5;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        
-        tbody tr:hover {
-            background: linear-gradient(90deg, #f8f9fa 0%, #e9ecef 100%);
-            transform: translateX(5px);
-        }
-        
-        tbody tr.playing {
-            background: linear-gradient(90deg, #d1f8f6 0%, #a8e6e3 100%);
-            border-left: 5px solid #00CEC9;
-        }
-        
-        td {
-            padding: 18px 15px;
-            font-size: 15px;
-        }
-        
-        td:nth-child(2), td:nth-child(3), td:nth-child(4) {
-            text-align: center;
-        }
-        
-        .song-title {
-            font-weight: 700;
-            color: #2d3436;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .play-icon {
-            color: #00CEC9;
-            font-size: 18px;
-        }
-        
-        .previous-views {
-            color: #636e72;
-            font-weight: 600;
-            font-size: 15px;
-        }
-        
-        .current-views {
-            color: #00CEC9;
+        .section-title {
+            font-size: 26px;
             font-weight: 800;
-            font-size: 16px;
+            color: #2d3436;
+            margin-bottom: 30px;
+            text-align: center;
+            letter-spacing: -0.5px;
         }
         
-        .increase-views {
-            font-weight: 900;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .increase-views.positive {
-            color: #ff6b6b;
-        }
-
-        .increase-views.negative {
-            color: #0984e3;
-        }
-
-        .increase-views.zero {
-            color: #636e72;
-        }
-
-        .arrow-icon {
-            font-size: 20px;
-            font-weight: 900;
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            max-width: 1100px;
+            margin: 0 auto;
         }
         
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
+        @media (max-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
         }
         
-        .modal.show {
-            display: flex;
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+            
+            .header {
+                padding: 30px 20px;
+                border-radius: 25px 25px 0 0;
+            }
+            
+            .header h1 {
+                font-size: 36px;
+            }
+            
+            .header h2 {
+                font-size: 20px;
+            }
+            
+            .video-title {
+                font-size: 20px;
+            }
+            
+            .video-info {
+                padding: 25px 20px;
+            }
+            
+            .stats-section {
+                padding: 30px 20px;
+                border-radius: 0 0 25px 25px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+            }
         }
         
-        .modal-content {
+        .song-card {
             background: white;
             border-radius: 20px;
-            padding: 40px;
-            max-width: 450px;
-            width: 90%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .modal-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .modal-header h2 {
-            font-size: 24px;
-            color: #2d3436;
-            margin-bottom: 8px;
-        }
-        
-        .modal-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 12px;
-            font-size: 16px;
-            margin-bottom: 10px;
-        }
-        
-        .modal-input:focus {
-            outline: none;
-            border-color: #00CEC9;
-        }
-        
-        .modal-buttons {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-        
-        .modal-btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 700;
+            overflow: hidden;
+            box-shadow: 
+                0 4px 20px rgba(0, 206, 201, 0.08),
+                0 2px 8px rgba(0, 0, 0, 0.04);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
         }
         
-        .modal-btn-primary {
-            background: linear-gradient(135deg, #00CEC9 0%, #14FFEC 100%);
-            color: white;
+        .song-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 12px 35px rgba(0, 206, 201, 0.2),
+                0 6px 15px rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 206, 201, 0.3);
         }
         
-        .modal-btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 206, 201, 0.4);
+        .song-card.playing {
+            border-color: #00CEC9;
+            box-shadow: 
+                0 12px 40px rgba(0, 206, 201, 0.3),
+                0 6px 20px rgba(0, 0, 0, 0.1),
+                inset 0 0 0 2px rgba(0, 206, 201, 0.1);
+            animation: glow-card 2s ease-in-out infinite;
         }
         
-        .modal-btn-secondary {
-            background: #636e72;
-            color: white;
+        @keyframes glow-card {
+            0%, 100% { 
+                border-color: #00CEC9; 
+                box-shadow: 
+                    0 12px 40px rgba(0, 206, 201, 0.3),
+                    0 6px 20px rgba(0, 0, 0, 0.1);
+            }
+            50% { 
+                border-color: #00E0D4; 
+                box-shadow: 
+                    0 15px 50px rgba(0, 206, 201, 0.4),
+                    0 8px 25px rgba(0, 0, 0, 0.12);
+            }
         }
         
-        .modal-btn-secondary:hover {
-            background: #2d3436;
+        .thumbnail-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
-        .error-msg {
-            color: #ff4757;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
+        .thumbnail-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .admin-panel {
-            max-width: 800px;
-            max-height: 90vh;
-            overflow-y: auto;
+        .song-card:hover .thumbnail-wrapper img {
+            transform: scale(1.15);
         }
         
-        .admin-table {
-            margin: 20px 0;
-        }
-        
-        .admin-row {
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 206, 201, 0.85) 0%, rgba(0, 224, 212, 0.85) 100%);
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 15px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            margin-bottom: 10px;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         
-        .admin-song-title {
-            flex: 1;
+        .song-card:hover .play-overlay {
+            opacity: 1;
+        }
+        
+        .play-icon-large {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #00CEC9;
+            font-size: 24px;
+            box-shadow: 
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            padding-left: 4px;
+        }
+        
+        .song-card:hover .play-icon-large {
+            transform: scale(1.1);
+        }
+        
+        .song-card.playing .play-overlay {
+            opacity: 1;
+            background: linear-gradient(135deg, rgba(0, 206, 201, 0.3) 0%, rgba(168, 230, 206, 0.3) 100%);
+        }
+        
+        .song-card.playing .play-icon-large {
+            animation: pulse-play 1.5s ease-in-out infinite;
+            background: #00CEC9;
+            color: white;
+        }
+        
+        @keyframes pulse-play {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+        
+        .song-info {
+            padding: 14px;
+            background: white;
+        }
+        
+        .song-title-grid {
+            font-size: 13px;
             font-weight: 700;
             color: #2d3436;
-            font-size: 14px;
-        }
-        
-        .admin-input {
-            width: 150px;
-            padding: 10px;
-            border: 2px solid #e9ecef;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-        }
-        
-        .admin-input:focus {
-            outline: none;
-            border-color: #00CEC9;
-        }
-        
-        .footer {
-            background: white;
-            padding: 25px;
-            text-align: center;
-            color: #636e72;
-            border-radius: 0 0 20px 20px;
-        }
-        
-        .footer-heart {
-            color: #00CEC9;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-        }
-        
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            10%, 30% { transform: scale(1.2); }
-            20%, 40% { transform: scale(1); }
+            line-height: 1.5;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            min-height: 39px;
         }
         
         .firebase-status {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(0, 206, 201, 0.9);
+            top: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, #00CEC9 0%, #00E0D4 100%);
             color: white;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 12px 24px;
+            border-radius: 25px;
             font-weight: 700;
+            font-size: 14px;
             z-index: 1000;
-            box-shadow: 0 4px 15px rgba(0, 206, 201, 0.4);
+            box-shadow: 
+                0 6px 20px rgba(0, 206, 201, 0.3),
+                0 3px 10px rgba(0, 0, 0, 0.1);
+            animation: slide-in 0.5s ease;
+        }
+        
+        @keyframes slide-in {
+            from {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
         
         @media (max-width: 768px) {
-            .header h1 { font-size: 32px; }
-            .header h2 { font-size: 24px; }
-            .video-title { font-size: 20px; }
-            .admin-song-title { font-size: 12px; }
-            .admin-input { width: 100px; }
+            .firebase-status {
+                top: 15px;
+                right: 15px;
+                font-size: 13px;
+                padding: 10px 20px;
+            }
+            
+            body {
+                padding: 10px;
+            }
+        }
+        
+        /* 스크롤바 스타일링 */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 206, 201, 0.05);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00CEC9 0%, #A8E6CE 100%);
+            border-radius: 10px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #00E0D4 0%, #B8F5E9 100%);
         }
     </style>
 </head>
 <body>
     <div class="floating-hearts" id="floatingHearts"></div>
-    <div class="firebase-status" id="firebaseStatus">🔄 연결 중...</div>
-
-    <div class="modal" id="passwordModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div style="font-size: 48px; margin-bottom: 10px;">🔐</div>
-                <h2>관리자 인증</h2>
-                <p style="color: #636e72; font-size: 14px;">비밀번호를 입력하세요</p>
-            </div>
-            <input type="password" class="modal-input" id="passwordInput" placeholder="비밀번호" onkeypress="if(event.key==='Enter') checkPassword()">
-            <p class="error-msg" id="passwordError">비밀번호가 올바르지 않습니다</p>
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-secondary" onclick="closePasswordModal()">취소</button>
-                <button class="modal-btn modal-btn-primary" onclick="checkPassword()">확인</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal" id="adminModal">
-        <div class="modal-content admin-panel">
-            <div class="modal-header">
-                <h2>⚙️ 조회수 관리</h2>
-                <p style="color: #636e72; font-size: 14px;">Firebase 실시간 동기화</p>
-            </div>
-            <div class="admin-table" id="adminTable"></div>
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-secondary" onclick="closeAdminModal()">취소</button>
-                <button class="modal-btn modal-btn-primary" onclick="saveAdminData()">💾 저장</button>
-            </div>
-        </div>
-    </div>
+    <div class="firebase-status" id="firebaseStatus">Firebase 연결 중...</div>
 
     <div class="container">
         <div class="header">
-            <div class="admin-lock" onclick="showPasswordModal()">🔒</div>
-            <h1> 장민호 </h1>
-            <h2>ANALOG Vol.1</h2>
-            <div class="live-badge">🔴 LIVE 총공 진행중</div>
+            <h1>🦌 ANALOG Vol.1</h1>
+            <h2>이 영상 하나면 충분합니다</h2>
+            <div>
+                <span class="live-badge">🔴 LIVE</span>
+            </div>
         </div>
 
         <div class="mission-banner">
-            🔥 목표를 향하여 으라차차차! 🔥
+            🎯 조회수 1억뷰 돌파 프로젝트 🎯
         </div>
 
         <div class="video-container">
             <div class="video-wrapper">
-                <iframe id="videoFrame" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <iframe id="videoFrame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
             </div>
             <div class="video-info">
                 <div class="now-playing">
-                    <span>▶</span> NOW PLAYING
+                    <span>▶ NOW PLAYING</span>
                 </div>
-                <div class="video-title" id="videoTitle">-</div>
+                <div class="video-title" id="videoTitle">로딩 중...</div>
                 <div class="timer-box">
-                    ⏱️ 다음 곡까지 <span class="timer-number" id="countdown">-</span>
+                    다음 곡까지: <span class="timer-number" id="countdown">-</span>
                 </div>
-                <button class="next-btn" onclick="playNextRandom()">🔄 다음 곡 랜덤 재생</button>
+                <button class="next-btn" onclick="playNextRandom()">🎲 랜덤플레이 타임</button>
             </div>
         </div>
 
         <div class="stats-section">
-            <h3 style="margin-bottom: 20px; color: #2d3436; font-size: 24px; font-weight: 800;">
-                📈 실시간 조회수 현황
-            </h3>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>곡명</th>
-                            <th>이전</th>
-                            <th>현재</th>
-                            <th>증감</th>
-                        </tr>
-                    </thead>
-                    <tbody id="songTable"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <div class="footer">
-            💙 Made with <span class="footer-heart"></span> by 민호특공대💙
-            <div style="margin-top: 10px; font-size: 15px; font-weight: 700; color: #00CEC9;">
-                ✨ 민호특공대 함께라면 무엇이든 할 수 있습니다 ✨
-            </div>
+            <div class="section-title">🎼 수록곡 목록 (총 17곡)</div>
+            <div class="grid-container" id="songGrid"></div>
         </div>
     </div>
 
@@ -651,21 +606,22 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
     <script>
+        // ========================================
+        // 🔥 Firebase 설정 - C링크용
+        // ⚠️ 반드시 새로운 Firebase 프로젝트 정보로 변경하세요!
+        // ========================================
         const firebaseConfig = {
-            apiKey: "AIzaSyDk0r98Ag5htVKH-vVxUzG52SYNcX1G0sA",
-            authDomain: "analog-vol1-mv.firebaseapp.com",
-            databaseURL: "https://analog-vol1-mv-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "analog-vol1-mv",
-            storageBucket: "analog-vol1-mv.firebasestorage.app",
-            messagingSenderId: "40601613117",
-            appId: "1:40601613117:web:de43110328bc627df14b54",
-            measurementId: "G-SRN2TZCE82"
+            apiKey: "YOUR_NEW_C_LINK_API_KEY",
+            authDomain: "your-c-project.firebaseapp.com",
+            databaseURL: "https://your-c-project-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "your-c-project-id",
+            storageBucket: "your-c-project.firebasestorage.app",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID",
+            measurementId: "YOUR_MEASUREMENT_ID"
         };
 
-        const ADMIN_PASSWORD = "@minho0728";
-        
         const videos = [
-         
             { id: 'Ghg7vG3NMs4', title: 'Hankyeryeong Pass', initialViews: 56307 },
             { id: 'ILppFoa3FTI', title: 'Lonely Love', initialViews: 34898 },
             { id: 'DKgiBUaZXr4', title: 'My Reflection in My Heart', initialViews: 73725 },
@@ -683,7 +639,6 @@
             { id: 'ZOPl8hBKd5c', title: ' 하이뮨의 NEW CF 촬영 현장', initialViews: 10202 },
             { id: 'jXJKJc5fZnE', title: '홀로된 사랑 (Lonely Love) Official MV', initialViews: 0},
             { id: '6lq_G6l4xRs', title: 'Lonely Love(홀로된 사랑) | 1theK', initialViews: 0 }
-            
         ];
 
         let db;
@@ -691,8 +646,66 @@
         let isPlaying = false;
         let countdown = 0;
         let timerInterval;
-        let viewsData = {};
-        let previousViews = {};
+
+        // ========================================
+        // ⏰ 시간대별 자동 재생 설정
+        // ========================================
+        function getTimeBasedDuration() {
+            const hour = new Date().getHours();
+            let min, max;
+
+            if (hour >= 6 && hour < 12) {
+                // 아침 (06:00-11:59): 95~125초
+                min = 95;
+                max = 125;
+            } else if (hour >= 12 && hour < 18) {
+                // 점심 (12:00-17:59): 75~105초
+                min = 75;
+                max = 105;
+            } else {
+                // 저녁 (18:00-05:59): 90~115초
+                min = 90;
+                max = 115;
+            }
+
+            const range = max - min + 1;
+            return Math.floor(Math.random() * range) + min;
+        }
+
+        // ========================================
+        // 🛡️ F12 개발자 도구 차단
+        // ========================================
+        (function() {
+            // 우클릭 차단
+            document.addEventListener('contextmenu', e => e.preventDefault());
+
+            // F12, Ctrl+Shift+I, Ctrl+U 차단
+            document.addEventListener('keydown', e => {
+                if (
+                    e.key === 'F12' ||
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                    (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+                    (e.ctrlKey && e.key === 'u')
+                ) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // 개발자 도구 감지
+            const detectDevTools = () => {
+                const threshold = 160;
+                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+                
+                if (widthThreshold || heightThreshold) {
+                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;font-size:24px;background:linear-gradient(135deg, #E8F8F7, #A8E6CE);color:#00CEC9;font-weight:bold;">🔒 개발자 도구는 사용할 수 없습니다</div>';
+                }
+            };
+
+            setInterval(detectDevTools, 1000);
+        })();
 
         function initializeFirebase() {
             try {
@@ -707,18 +720,6 @@
                     });
                 });
 
-                db.ref('views').on('value', (snapshot) => {
-                    const newData = snapshot.val() || {};
-                    // 이전 값 저장
-                    Object.keys(viewsData).forEach(key => {
-                        if (viewsData[key] !== newData[key]) {
-                            previousViews[key] = viewsData[key];
-                        }
-                    });
-                    viewsData = newData;
-                    updateUI();
-                });
-
                 document.getElementById('firebaseStatus').textContent = '✅ Firebase 연결됨';
                 setTimeout(() => {
                     document.getElementById('firebaseStatus').style.display = 'none';
@@ -728,72 +729,50 @@
             } catch (error) {
                 console.error('Firebase 초기화 실패:', error);
                 document.getElementById('firebaseStatus').textContent = '⚠️ Firebase 오류';
-                document.getElementById('firebaseStatus').style.background = 'rgba(255, 107, 107, 0.9)';
-                
-                videos.forEach((video, index) => {
-                    viewsData[index] = video.initialViews;
-                    previousViews[index] = video.initialViews;
-                });
-                updateUI();
+                document.getElementById('firebaseStatus').style.background = 'linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%)';
             }
         }
 
-        function updateUI() {
-            let tableHTML = '';
+        function createSongGrid() {
+            const gridHTML = videos.map((video, index) => `
+                <div class="song-card ${index === currentIndex && isPlaying ? 'playing' : ''}" onclick="playVideo(${index})" id="card-${index}">
+                    <div class="thumbnail-wrapper">
+                        <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="${video.title}" loading="lazy">
+                        <div class="play-overlay">
+                            <div class="play-icon-large">▶</div>
+                        </div>
+                    </div>
+                    <div class="song-info">
+                        <div class="song-title-grid">${video.title}</div>
+                    </div>
+                </div>
+            `).join('');
 
-            videos.forEach((video, index) => {
-                const currentViews = viewsData[index] || video.initialViews;
-                const prevViews = previousViews[index] || video.initialViews;
-                const change = currentViews - prevViews;
-                const isCurrentPlaying = index === currentIndex && isPlaying;
-                
-                let arrow = '';
-                let changeClass = '';
-                if (change > 0) {
-                    arrow = '↑';
-                    changeClass = 'positive';
-                } else if (change < 0) {
-                    arrow = '↓';
-                    changeClass = 'negative';
+            document.getElementById('songGrid').innerHTML = gridHTML;
+        }
+
+        function updatePlayingCard() {
+            document.querySelectorAll('.song-card').forEach((card, index) => {
+                if (index === currentIndex && isPlaying) {
+                    card.classList.add('playing');
                 } else {
-                    arrow = '→';
-                    changeClass = 'zero';
+                    card.classList.remove('playing');
                 }
-
-                tableHTML += `
-                    <tr class="${isCurrentPlaying ? 'playing' : ''}" onclick="playVideo(${index})">
-                        <td>
-                            <div class="song-title">
-                                ${isCurrentPlaying ? '<span class="play-icon">▶</span>' : ''}
-                                ${video.title}
-                            </div>
-                        </td>
-                        <td><span class="previous-views">${prevViews.toLocaleString()}</span></td>
-                        <td><span class="current-views">${currentViews.toLocaleString()}</span></td>
-                        <td>
-                            <span class="increase-views ${changeClass}">
-                                <span class="arrow-icon">${arrow}</span>
-                                ${change > 0 ? '+' : ''}${change.toLocaleString()}
-                            </span>
-                        </td>
-                    </tr>
-                `;
             });
-
-            document.getElementById('songTable').innerHTML = tableHTML;
         }
 
         function playVideo(index) {
             currentIndex = index;
             isPlaying = true;
             
+            const video = videos[index];
             document.getElementById('videoFrame').src = 
-                `https://www.youtube.com/embed/${videos[index].id}?autoplay=1&controls=1`;
-            document.getElementById('videoTitle').textContent = videos[index].title;
+                `https://www.youtube.com/embed/${video.id}?autoplay=1&controls=1&rel=0`;
+            document.getElementById('videoTitle').textContent = video.title;
 
-            const randomDuration = Math.floor(Math.random() * 11) + 45;
-            startTimer(randomDuration);
-            updateUI();
+            const duration = getTimeBasedDuration();
+            startTimer(duration);
+            updatePlayingCard();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -826,65 +805,9 @@
             document.getElementById('countdown').textContent = countdown + '초';
         }
 
-        function showPasswordModal() {
-            document.getElementById('passwordModal').classList.add('show');
-            document.getElementById('passwordInput').value = '';
-            document.getElementById('passwordError').style.display = 'none';
-            document.getElementById('passwordInput').focus();
-        }
-
-        function closePasswordModal() {
-            document.getElementById('passwordModal').classList.remove('show');
-        }
-
-        function checkPassword() {
-            const input = document.getElementById('passwordInput').value;
-            if (input === ADMIN_PASSWORD) {
-                closePasswordModal();
-                showAdminModal();
-            } else {
-                document.getElementById('passwordError').style.display = 'block';
-            }
-        }
-
-        function showAdminModal() {
-            let adminHTML = '';
-            videos.forEach((video, index) => {
-                const currentViews = viewsData[index] || video.initialViews;
-                adminHTML += `
-                    <div class="admin-row">
-                        <div class="admin-song-title">${video.title}</div>
-                        <input type="number" class="admin-input" id="admin-${index}" value="${currentViews}">
-                    </div>
-                `;
-            });
-            document.getElementById('adminTable').innerHTML = adminHTML;
-            document.getElementById('adminModal').classList.add('show');
-        }
-
-        function closeAdminModal() {
-            document.getElementById('adminModal').classList.remove('show');
-        }
-
-        function saveAdminData() {
-            if (!db) {
-                alert('❌ Firebase 연결이 필요합니다. 페이지를 새로고침하세요.');
-                return;
-            }
-
-            videos.forEach((video, index) => {
-                const input = document.getElementById('admin-' + index);
-                const value = parseInt(input.value) || 0;
-                db.ref('views/' + index).set(value);
-            });
-
-            closeAdminModal();
-            alert('✅ 저장 완료! 모든 사용자에게 실시간 반영됩니다.');
-        }
-
         function createFloatingHearts() {
             const container = document.getElementById('floatingHearts');
-            const hearts = ['💙', '💚', '🩵', '💎', '✨'];
+            const hearts = ['💙', '💚', '🩵', '💎', '✨', '🌿', '🍃'];
             
             setInterval(() => {
                 const heart = document.createElement('div');
@@ -892,36 +815,34 @@
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = Math.random() * 100 + '%';
                 heart.style.animationDelay = Math.random() * 2 + 's';
-                heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
                 container.appendChild(heart);
 
-                setTimeout(() => heart.remove(), 7000);
-            }, 800);
+                setTimeout(() => heart.remove(), 8000);
+            }, 1000);
         }
 
-        window.onload = function() {
+        // ========================================
+        // 🚀 페이지 로드 시 즉시 실행
+        // ========================================
+        window.addEventListener('load', function() {
             initializeFirebase();
+            createSongGrid();
             createFloatingHearts();
+            
+            // 500ms 후 자동 재생 시작
             setTimeout(() => {
                 const randomStart = Math.floor(Math.random() * videos.length);
                 playVideo(randomStart);
             }, 500);
-        };
+        });
+
+        // ========================================
+        // 🔄 새로고침 시에도 안정적 동작
+        // ========================================
+        window.addEventListener('beforeunload', function() {
+            if (timerInterval) clearInterval(timerInterval);
+        });
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
