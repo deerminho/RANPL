@@ -257,7 +257,7 @@
     <div class="container">
         <!-- 첫 번째 곡 -->
         <div class="player-wrapper" id="player1">
-            <div class="song-title">홀로된 사랑 (Lonely Love) Official MV</div>
+            <div class="song-title">홀로된 사랑 (안무 ver)</div>
             <div class="video-container">
                 <div id="video1"></div>
             </div>
@@ -319,7 +319,7 @@
         // YouTube IFrame API가 준비되면 호출
         function onYouTubeIframeAPIReady() {
             players[1] = new YT.Player('video1', {
-                videoId: 'jXJKJc5fZnE',
+                videoId: 'v_3hazNandw',
                 playerVars: {
                     'enablejsapi': 1,
                     'origin': window.location.origin,
@@ -355,7 +355,7 @@
         }
 
         function getRandomTime() {
-            // 85초~90초 사이의 랜덤 시간 (초 단위)
+            // 65초~90초 사이의 랜덤 시간 (초 단위)
             return Math.floor(85 + Math.random() * 6);
         }
 
@@ -485,3 +485,4 @@
     </script>
 </body>
 </html>
+
