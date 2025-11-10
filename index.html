@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>음악 플레이어</title>
+    <title>I'll always be with Jang Minho Player  -</title>
     <style>
         * {
             margin: 0;
@@ -13,450 +13,258 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
             min-height: 100vh;
-            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
 
         .container {
-            max-width: 700px;
-            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2dd4bf;
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .player-wrapper {
-            background: white;
-            border-radius: 12px;
-            padding: 15px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 2px solid rgba(230, 230, 250, 0.5);
-        }
-
-        .song-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .video-container {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border: 2px solid #e8eaf6;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(45, 212, 191, 0.3);
+            margin-bottom: 25px;
         }
 
-        .video-container iframe {
+        .player-wrapper iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            border-radius: 8px;
+            border: none;
         }
 
-        .timer-container {
-            background: transparent;
-            padding: 8px;
-            border-radius: 8px;
-            text-align: center;
-            border: 3px solid rgba(159, 168, 218, 0.8);
-            margin-bottom: 0;
-        }
-
-        .timer-label {
-            color: #5c6bc0;
-            font-size: 10px;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-
-        .timer-display {
-            font-size: 18px;
-            font-weight: bold;
-            color: #5c6bc0;
-            font-family: 'Courier New', monospace;
-            letter-spacing: 1px;
-        }
-
-        .youtube-links-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .controls {
+            display: flex;
             gap: 15px;
-            max-width: 700px;
-            margin: 20px auto 20px;
-            padding: 0 10px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
-        .youtube-link-wrapper {
-            text-align: center;
-        }
-
-        .youtube-link {
-            display: block;
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+        button {
+            background: linear-gradient(135deg, #2dd4bf 0%, #14b8a6 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-        }
-
-        .youtube-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
-        }
-
-        .youtube-link img {
-            width: 100%;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .youtube-link:hover img {
-            transform: scale(1.05);
-        }
-
-        .youtube-link::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 50px;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 0 20px rgba(0,0,0,0.5);
-            pointer-events: none;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(45, 212, 191, 0.4);
         }
 
-        .youtube-link:hover::after {
-            font-size: 60px;
-            color: #ff0000;
-            text-shadow: 0 0 30px rgba(255,0,0,0.8);
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(45, 212, 191, 0.6);
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
         }
 
-        .link-label {
+        button:active {
+            transform: translateY(0);
+        }
+
+        button.unmute {
+            background: linear-gradient(135deg, #fb7185 0%, #f43f5e 100%);
+            box-shadow: 0 4px 15px rgba(251, 113, 133, 0.4);
+        }
+
+        button.unmute:hover {
+            background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
+            box-shadow: 0 6px 20px rgba(251, 113, 133, 0.6);
+        }
+
+        .status {
             text-align: center;
-            margin-top: 8px;
-            font-size: 12px;
-            color: #5c6bc0;
+            margin: 15px 0;
+            color: #0d9488;
             font-weight: 600;
         }
 
-        .hidden {
-            display: none;
-        }
-
-        /* 모바일 최적화 */
-        @media (max-width: 768px) {
-            body {
-                padding: 8px;
+        @media (max-width: 600px) {
+            .controls {
+                flex-direction: column;
             }
 
-            .player-wrapper {
-                padding: 12px;
-                border-radius: 10px;
+            button {
+                width: 100%;
             }
 
-            .song-title {
-                font-size: 14px;
-                margin-bottom: 10px;
-            }
-
-            .timer-container {
-                padding: 6px;
-                border-radius: 8px;
-            }
-
-            .timer-label {
-                font-size: 9px;
-                margin-bottom: 3px;
-            }
-
-            .timer-display {
-                font-size: 16px;
-            }
-
-            .video-container {
-                border-radius: 8px;
-            }
-
-            .youtube-links-container {
-                gap: 12px;
-                margin: 15px auto 15px;
-            }
-
-            .youtube-link::after {
-                font-size: 40px;
-            }
-
-            .youtube-link:hover::after {
-                font-size: 50px;
-            }
-
-            .link-label {
-                font-size: 11px;
-            }
-        }
-
-        /* 작은 모바일 */
-        @media (max-width: 480px) {
-            .timer-display {
-                font-size: 14px;
-            }
-
-            .timer-label {
-                font-size: 8px;
-            }
-
-            .song-title {
-                font-size: 13px;
-            }
-
-            .youtube-link::after {
-                font-size: 35px;
-            }
-
-            .link-label {
-                font-size: 10px;
+            h1 {
+                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- 첫 번째 곡 -->
-        <div class="player-wrapper" id="player1">
-            <div class="song-title">홀로된 사랑 (dance ver.)</div>
-            <div class="video-container">
-                <div id="video1"></div>
-            </div>
-            <div class="timer-container">
-                <div class="timer-label">다음 곡까지</div>
-                <div class="timer-display" id="timer1">00초</div>
-            </div>
-        </div>
-
-        <!-- 두 번째 곡 -->
-        <div class="player-wrapper hidden" id="player2">
-            <div class="song-title">'내게 남은 사랑을 드릴께요 ' Official MV</div>
-            <div class="video-container">
-                <div id="video2"></div>
-            </div>
-            <div class="timer-container">
-                <div class="timer-label">다음 곡까지</div>
-                <div class="timer-display" id="timer2">00초</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 유튜브 링크 섹션 -->
-    <div class="youtube-links-container">
-        <div class="youtube-link-wrapper">
-            <a href="https://www.youtube.com/watch?v=v_3hazNandw" target="_blank" class="youtube-link">
-                <img src="https://img.youtube.com/vi/v_3hazNandw/maxresdefault.jpg" alt="홀로된 사랑">
-            </a>
-            <div class="link-label">🎵 홀로된 사랑</div>
-        </div>
-        <div class="youtube-link-wrapper">
-            <a href="https://www.youtube.com/watch?v=nczfiJBMA2U" target="_blank" class="youtube-link">
-                <img src="https://img.youtube.com/vi/nczfiJBMA2U/maxresdefault.jpg" alt="내게 남은 사랑을 드릴께요">
-            </a>
-            <div class="link-label">🎵 내게 남은 사랑을 드릴께요</div>
-        </div>
-    </div>
-
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script>
-        let players = {};
-        let currentSong = 1;
-        let autoSwitchTimeout = null;
-        let countdownInterval = null;
-        let targetTime = 0;
+        <h1>I'll always be with Jang Minho Player</h1>
         
-        // 타이머 상태 관리
-        const timers = {
-            1: { 
-                countdown: 0, 
-                running: false
-            },
-            2: { 
-                countdown: 0, 
-                running: false
+        <div class="status" id="status">Firebase 연결 중...</div>
+
+        <div class="player-wrapper">
+            <iframe id="player" 
+                    src="https://youtube.com/playlist?list=PLfuYGpnnSBu1v-uyEw7ZeaOc3WoxjIyS6&si=9AQZ1E0nflu9fOSe"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+            </iframe>
+        </div>
+
+        <div class="controls">
+            <button onclick="unmutePlayer()" class="unmute">🔊 소리 켜기</button>
+            <button onclick="syncWithFirebase()">Firebase 동기화</button>
+        </div>
+
+
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getDatabase, ref, set, onValue, get } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+
+        // Firebase 설정
+        const firebaseConfig = {
+            apiKey: "AIzaSyBDOcjC6DNtM-8xQS6PNZqV7yAFq4PMCR8",
+            authDomain: "always-88981.firebaseapp.com",
+            projectId: "always-88981",
+            storageBucket: "always-88981.firebasestorage.app",
+            messagingSenderId: "915000956041",
+            appId: "1:915000956041:web:490e0668c560aafd0e6258",
+            measurementId: "G-WRWS6GGV8L",
+            databaseURL: "https://always-88981-default-rtdb.firebaseio.com"
+        };
+
+        // Firebase 초기화
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        let currentPlaylistId = 'PLfuYGpnnSBu24ryeO51pagt62smucmmGv';
+        let isMuted = true;
+
+        // Firebase 연결 확인
+        const statusElement = document.getElementById('status');
+        statusElement.textContent = 'Firebase 연결됨 ✓';
+        statusElement.style.color = '#10b981';
+
+        // Firebase에서 재생목록 불러오기
+        const playlistRef = ref(database, 'overnight/playlist');
+        
+        // 실시간 리스너 - 재생목록이 변경되면 자동으로 업데이트
+        onValue(playlistRef, (snapshot) => {
+            const data = snapshot.val();
+            if (data && data.id) {
+                currentPlaylistId = data.id;
+                updatePlayer(currentPlaylistId);
+                console.log('Firebase에서 재생목록 로드:', currentPlaylistId);
+            }
+        });
+
+        // 플레이어 업데이트 함수
+        function updatePlayer(playlistId) {
+            const iframe = document.getElementById('player');
+            const muteParam = isMuted ? '&mute=1' : '&mute=0';
+            iframe.src = `https://www.youtube.com/embed/videoseries?list=${playlistId}&autoplay=1${muteParam}&loop=1&rel=0`;
+        }
+
+        // 소리 켜기 함수
+        window.unmutePlayer = function() {
+            isMuted = false;
+            updatePlayer(currentPlaylistId);
+            alert('소리가 켜졌습니다! 🔊\n\n자동재생을 위해 처음에는 음소거로 시작됩니다.\n이제 소리와 함께 재생됩니다.');
+        };
+
+        // 유튜브에서 열기
+        window.openInYoutube = function() {
+            window.open(`https://www.youtube.com/playlist?list=${currentPlaylistId}`, '_blank');
+        };
+
+        // 재생목록 업데이트
+        window.updatePlaylist = async function() {
+            const newPlaylistId = prompt('새 재생목록 ID를 입력하세요:', currentPlaylistId);
+            if (newPlaylistId && newPlaylistId.trim()) {
+                try {
+                    await set(ref(database, 'overnight/playlist'), {
+                        id: newPlaylistId.trim(),
+                        updatedAt: new Date().toISOString(),
+                        updatedBy: 'overnight_player'
+                    });
+                    alert('재생목록이 업데이트되었습니다!\n모든 연결된 기기에서 자동으로 변경됩니다.');
+                } catch (error) {
+                    console.error('업데이트 오류:', error);
+                    alert('업데이트 실패: ' + error.message);
+                }
             }
         };
 
-        // YouTube IFrame API가 준비되면 호출
-        function onYouTubeIframeAPIReady() {
-            players[1] = new YT.Player('video1', {
-                videoId: 'v_3hazNandw',
-                playerVars: {
-                    'enablejsapi': 1,
-                    'origin': window.location.origin,
-                    'autoplay': 1,
-                    'mute': 0,
-                    'rel': 0
-                },
-                events: {
-                    'onReady': (event) => onPlayerReady(event, 1),
-                    'onStateChange': (event) => onPlayerStateChange(event, 1)
+        // Firebase 동기화
+        window.syncWithFirebase = async function() {
+            try {
+                const snapshot = await get(playlistRef);
+                if (snapshot.exists()) {
+                    const data = snapshot.val();
+                    const updateTime = data.updatedAt ? new Date(data.updatedAt).toLocaleString('ko-KR') : '정보 없음';
+                    alert(`✅ Firebase 동기화 완료!\n\n재생목록: ${data.id}\n마지막 업데이트: ${updateTime}\n업데이트한 기기: ${data.updatedBy || '알 수 없음'}`);
+                } else {
+                    // 데이터가 없으면 현재 재생목록으로 초기화
+                    await set(ref(database, 'overnight/playlist'), {
+                        id: currentPlaylistId,
+                        updatedAt: new Date().toISOString(),
+                        updatedBy: 'overnight_player'
+                    });
+                    alert('Firebase에 초기 재생목록이 저장되었습니다!');
+                }
+            } catch (error) {
+                console.error('동기화 오류:', error);
+                alert('동기화 실패: ' + error.message);
+            }
+        };
+
+        // 페이지 로드 시 Firebase 초기화
+        window.addEventListener('load', function() {
+            console.log('Overnight JangMinHo 플레이어 로드 완료 (최적화 버전)');
+            
+            // 초기 데이터 확인
+            get(playlistRef).then((snapshot) => {
+                if (!snapshot.exists()) {
+                    // 데이터가 없으면 기본값으로 초기화
+                    set(ref(database, 'overnight/playlist'), {
+                        id: currentPlaylistId,
+                        updatedAt: new Date().toISOString(),
+                        updatedBy: 'overnight_player'
+                    });
                 }
             });
-
-            players[2] = new YT.Player('video2', {
-                videoId: 'nczfiJBMA2U',
-                playerVars: {
-                    'enablejsapi': 1,
-                    'origin': window.location.origin,
-                    'rel': 0
-                },
-                events: {
-                    'onReady': (event) => onPlayerReady(event, 2),
-                    'onStateChange': (event) => onPlayerStateChange(event, 2)
-                }
-            });
-        }
-
-        function onPlayerReady(event, songNum) {
-            // 첫 번째 곡은 자동 재생
-            if (songNum === 1) {
-                event.target.playVideo();
-            }
-        }
-
-        function getRandomTime() {
-            // 65초~75초 사이의 랜덤 시간 (초 단위)
-            return Math.floor(65 + Math.random() * 11);
-        }
-
-        function onPlayerStateChange(event, songNum) {
-            if (event.data === YT.PlayerState.PLAYING) {
-                // 재생 시작
-                startCountdown(songNum);
-                
-            } else if (event.data === YT.PlayerState.PAUSED) {
-                // 일시정지
-                pauseCountdown(songNum);
-            } else if (event.data === YT.PlayerState.ENDED) {
-                // 곡 종료
-                pauseCountdown(songNum);
-                goToNextSong();
-            }
-        }
-
-        function updateDisplay(timerNum) {
-            document.getElementById(`timer${timerNum}`).textContent = 
-                `${String(timers[timerNum].countdown).padStart(2, '0')}초`;
-        }
-
-        function startCountdown(timerNum) {
-            if (timers[timerNum].running) return;
-            
-            // 랜덤 시간 설정
-            targetTime = getRandomTime();
-            timers[timerNum].countdown = targetTime;
-            timers[timerNum].running = true;
-            updateDisplay(timerNum);
-            
-            // 기존 타이머 제거
-            if (autoSwitchTimeout) {
-                clearTimeout(autoSwitchTimeout);
-            }
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-            }
-            
-            // 카운트다운 시작
-            countdownInterval = setInterval(() => {
-                timers[timerNum].countdown--;
-                updateDisplay(timerNum);
-                
-                if (timers[timerNum].countdown <= 0) {
-                    clearInterval(countdownInterval);
-                    goToNextSong();
-                }
-            }, 1000);
-        }
-
-        function pauseCountdown(timerNum) {
-            if (!timers[timerNum].running) return;
-            
-            timers[timerNum].running = false;
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-            }
-            if (autoSwitchTimeout) {
-                clearTimeout(autoSwitchTimeout);
-            }
-        }
-
-        function resetCountdown(timerNum) {
-            timers[timerNum].running = false;
-            timers[timerNum].countdown = 0;
-            updateDisplay(timerNum);
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-            }
-        }
-
-        function goToNextSong() {
-            // 기존 타이머 제거
-            if (autoSwitchTimeout) {
-                clearTimeout(autoSwitchTimeout);
-            }
-            if (countdownInterval) {
-                clearInterval(countdownInterval);
-            }
-            
-            if (currentSong === 1) {
-                // 첫 번째 곡 숨기기
-                document.getElementById('player1').classList.add('hidden');
-                document.getElementById('player2').classList.remove('hidden');
-                
-                // 첫 번째 곡 정지
-                if (players[1]) {
-                    players[1].pauseVideo();
-                }
-                pauseCountdown(1);
-                
-                // 두 번째 곡 재생 및 타이머 리셋
-                resetCountdown(2);
-                if (players[2] && players[2].seekTo) {
-                    setTimeout(() => {
-                        players[2].seekTo(0);
-                        players[2].playVideo();
-                    }, 500);
-                }
-                
-                currentSong = 2;
-            } else {
-                // 두 번째 곡 숨기기
-                document.getElementById('player2').classList.add('hidden');
-                document.getElementById('player1').classList.remove('hidden');
-                
-                // 두 번째 곡 정지
-                if (players[2]) {
-                    players[2].pauseVideo();
-                }
-                pauseCountdown(2);
-                
-                // 첫 번째 곡 재생 및 타이머 리셋
-                resetCountdown(1);
-                if (players[1] && players[1].seekTo) {
-                    setTimeout(() => {
-                        players[1].seekTo(0);
-                        players[1].playVideo();
-                    }, 500);
-                }
-                
-                currentSong = 1;
-            }
-        }
+        });
     </script>
 </body>
 </html>
+
+
+
+
+
